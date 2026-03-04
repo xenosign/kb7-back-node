@@ -1,0 +1,13 @@
+{
+  "name": "kb7-back-node",
+  "version": "1.0.0",
+  "description": "간단한 투표용 백엔드 서버",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

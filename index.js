@@ -22,8 +22,22 @@ function logVotes() {
 }
 
 app.get('/vote', (req, res) => {
+  // 허용된 파라미터(name, choice) 외 다른 키가 있으면 거부
+  const allowedKeys = ['name', 'choice'];
+  const hasInvalidParam = Object.keys(req.query).some(
+    (key) => !allowedKeys.includes(key)
+  );
+  if (hasInvalidParam) {
+    return res.status(400).send('잘못된 요청입니다.');
+  }
+
   const choice = req.query.choice?.toLowerCase();
   const name = (req.query.name || '').trim();
+
+  // choice는 dog 또는 cat 만 허용
+  if (choice !== 'cat' && choice !== 'dog') {
+    return res.status(400).send('잘못된 요청입니다.');
+  }
 
   if (choice === 'cat') {
     votes.cat++;
@@ -37,10 +51,6 @@ app.get('/vote', (req, res) => {
     console.log(`[투표] dog +1${name ? ` (${name})` : ''}`);
     logVotes();
     res.send(`dog 투표 완료! (현재: ${votes.dog}표)`);
-  } else {
-    res
-      .status(400)
-      .send('choice 쿼리에 cat 또는 dog를 전달해주세요. 예: /vote?choice=cat');
   }
 });
 

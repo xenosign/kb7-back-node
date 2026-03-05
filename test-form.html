@@ -5,13 +5,21 @@
     <title>투표 테스트</title>
   </head>
   <body>
-    <h2>투표 (쿼리 스트링 방식)</h2>
+    <h2>강아지 vs 고양이 투표</h2>
     <form
       action="https://port-0-kb7-back-node-mmc3pmla14c7b8b4.sel3.cloudtype.app/vote"
       method="GET"
     >
-      <button type="submit" name="choice" value="cat">🐱 Cat 투표</button>
-      <button type="submit" name="choice" value="dog">🐕 Dog 투표</button>
+      <p>
+        <label>이름 <input type="text" name="name" /></label>
+      </p>
+      <p>
+        <label><input type="radio" name="choice" value="dog" /> 강아지</label>
+        <label><input type="radio" name="choice" value="cat" /> 고양이</label>
+      </p>
+      <p>
+        <button type="submit">제출</button>
+      </p>
     </form>
   </body>
 </html>

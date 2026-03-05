@@ -8,26 +8,33 @@ const votes = {
   dog: 0,
 };
 
+// 투표한 사람 이름 배열
+const voters = [];
+
 // 터미널에 투표 결과 출력
 function logVotes() {
   console.log('\n========== 투표 현황 ==========');
   console.log(`  cat: ${votes.cat}표`);
   console.log(`  dog: ${votes.dog}표`);
   console.log(`  총합: ${votes.cat + votes.dog}표`);
+  console.log('  투표자:', voters.length ? voters.join(', ') : '(없음)');
   console.log('==============================\n');
 }
 
 app.get('/vote', (req, res) => {
   const choice = req.query.choice?.toLowerCase();
+  const name = (req.query.name || '').trim();
 
   if (choice === 'cat') {
     votes.cat++;
-    console.log(`[투표] cat +1`);
+    if (name) voters.push(name);
+    console.log(`[투표] cat +1${name ? ` (${name})` : ''}`);
     logVotes();
     res.send(`cat 투표 완료! (현재: ${votes.cat}표)`);
   } else if (choice === 'dog') {
     votes.dog++;
-    console.log(`[투표] dog +1`);
+    if (name) voters.push(name);
+    console.log(`[투표] dog +1${name ? ` (${name})` : ''}`);
     logVotes();
     res.send(`dog 투표 완료! (현재: ${votes.dog}표)`);
   } else {

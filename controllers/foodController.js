@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 
 const router = express.Router();
 
@@ -14,16 +14,14 @@ const foodData = [
   { category: 'japanese', food: '타코야끼' },
 ];
 
-
 router.get('/food/all', (req, res) => {
   res.json(foodData);
 });
 
-
 router.get('/food/:category', (req, res) => {
   const category = (req.params.category || '').toLowerCase();
   const result = foodData.filter(
-    (item) => item.category.toLowerCase() === category
+    (item) => item.category.toLowerCase() === category,
   );
 
   if (result.length === 0) {
@@ -33,7 +31,8 @@ router.get('/food/:category', (req, res) => {
   res.json(result);
 });
 
-module.exports = {
-  foodRouter: router,
-};
+router.get('/food/send', (req, res) => {
+  res.json('데이터 수신 완료');
+});
 
+export { router as foodRouter };

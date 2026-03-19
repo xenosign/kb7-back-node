@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 
 const router = express.Router();
 
@@ -58,8 +58,5 @@ router.get('/results', (req, res) => {
   res.json(votes);
 });
 
-module.exports = {
-  voteRouter: router,
-  logVotes,
-};
+export { router as voteRouter, logVotes };
 

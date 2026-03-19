@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "간단한 투표용 백엔드 서버",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index.js",
     "dev": "node index.js"

@@ -1,9 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const PORT = 3000;
 
 const { voteRouter, logVotes } = require('./controllers/voteController');
 const { foodRouter } = require('./controllers/foodController');
+
+app.use(cors());
 
 app.use('/', voteRouter);
 app.use('/', foodRouter);

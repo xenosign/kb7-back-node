@@ -5,11 +5,13 @@ const PORT = 3000;
 
 import { voteRouter, logVotes } from './controllers/voteController.js';
 import { foodRouter } from './controllers/foodController.js';
+import { corsRouter } from './controllers/corsController.js';
 
-app.use(cors());
+// app.use(cors());
 
 app.use('/', voteRouter);
 app.use('/', foodRouter);
+app.use('/', corsRouter);
 
 app.listen(PORT, () => {
   console.log(`투표 서버 실행: http://localhost:${PORT}`);
